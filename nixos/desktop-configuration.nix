@@ -101,6 +101,7 @@
     jdk
     yarn
     leiningen
+    protobuf3_8
     python38
     gcc
     libffi
