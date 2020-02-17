@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -22,6 +21,7 @@
   boot.extraModprobeConfig = "options kvm_intel nested=1";
 
   virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
 
   boot.initrd.luks.devices = [
     {
@@ -60,12 +60,53 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    wget vim emacs gnupg vlc git plasma-nm firefox-devedition-bin android-studio jetbrains.idea-community jq tmux docker-compose docker sops obs-studio gimp blender transmission-gtk chromium amarok audacity calibre virtualbox kdeApplications.spectacle gparted ntfs3g sidequest ksshaskpass
-    python38
-    qemu virtmanager-qt dmg2img libguestfs-with-appliance
+    # basic system tools
+    plasma-nm
+    firefox-devedition-bin
+    chromium
+    git
+    ksshaskpass
+    wget
+    vim
+    emacs
+    gnupg
+    tmux
+    kdeApplications.spectacle
+    gparted
+    ntfs3g
+    # virtualization
+    virtualbox
+    docker-compose
+    docker
+    qemu
+    virtmanager-qt
+    dmg2img
+    libguestfs-with-appliance
+    amarok
+    # multimedia
+    vlc
+    obs-studio
+    gimp
+    blender
     unity3d
+    audacity
+    calibre
+    sidequest
+    transmission-gtk
+    # goodnotes development
+    android-studio
+    jetbrains.idea-community
+    jq
+    sops
+    jdk
+    yarn
+    leiningen
+    python38
+    gcc
+    libffi
   ];
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
+  programs.java.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -93,7 +134,6 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
-  # services.xserver.videoDrivers = [ "intel" ];
   services.xserver.videoDrivers = [ "intel" "nvidia" ];
 
   # Enable touchpad support.

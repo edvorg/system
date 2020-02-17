@@ -18,6 +18,10 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = true;
   boot.loader.grub.enableCryptodisk = true;
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.docker.enable = true;
 
   boot.initrd.luks.devices = [
     {
@@ -34,8 +38,8 @@
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
-  networking.useDHCP = false;
-  networking.interfaces.wlp1s0.useDHCP = true;
+  # networking.useDHCP = false;
+  # networking.interfaces.wlp1s0.useDHCP = true;
   networking.networkmanager.enable = true;
 
   # Configure network proxy if necessary
@@ -56,16 +60,56 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    wget vim emacs gnupg mtr vlc git plasma-nm firefox-devedition-bin android-studio jetbrains.idea-community jq tmux docker-compose docker sops obs-studio gimp blender transmission-gtk chromium amarok audacity calibre virtualbox kdeApplications.spectacle gparted ntfs3g ksshaskpass
-    jdk yarn leiningen
-    python38 gcc libffi
+    # basic system tools
+    plasma-nm
+    firefox-devedition-bin
+    chromium
+    git
+    ksshaskpass
+    wget
+    vim
+    emacs
+    gnupg
+    tmux
+    kdeApplications.spectacle
+    gparted
+    ntfs3g
+    # virtualization
+    virtualbox
+    docker-compose
+    docker
+    qemu
+    virtmanager-qt
+    dmg2img
+    libguestfs-with-appliance
+    amarok
+    # multimedia
+    vlc
+    obs-studio
+    gimp
+    blender
+    unity3d
+    audacity
+    calibre
+    sidequest
+    transmission-gtk
+    # goodnotes development
+    android-studio
+    jetbrains.idea-community
+    jq
+    sops
+    jdk
+    yarn
+    leiningen
+    python38
+    gcc
+    libffi
   ];
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
   programs.java.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.mtr.enable = true;
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
@@ -99,10 +143,9 @@
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  virtualisation.docker.enable = true;
   users.users.edvorg = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
   };
 
   # This value determines the NixOS release with which your system is to be
