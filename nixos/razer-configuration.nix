@@ -105,6 +105,8 @@
     python38
     gcc
     libffi
+    glibc
+    patchelf
   ];
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
   programs.java.enable = true;
