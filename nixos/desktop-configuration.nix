@@ -109,6 +109,7 @@
     android-udev-rules
     android-studio
   ];
+  programs.adb.enable = true;
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
   programs.java.enable = true;
 
@@ -150,7 +151,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edvorg = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "adbusers" ];
   };
 
   # This value determines the NixOS release with which your system is to be
