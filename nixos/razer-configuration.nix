@@ -94,19 +94,20 @@
     sidequest
     transmission-gtk
     # goodnotes development
-    android-studio
     jetbrains.idea-community
     jq
     sops
     jdk
     yarn
     leiningen
-    protobuf3_8
     python38
     gcc
     libffi
     glibc
     patchelf
+    # android development
+    android-udev-rules
+    android-studio
   ];
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
   programs.java.enable = true;
