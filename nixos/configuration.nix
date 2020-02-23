@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hardware-specific.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -23,16 +24,6 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
 
-  boot.initrd.luks.devices = [
-    {
-      name = "root";
-      device = "/dev/disk/by-uuid/1dd1f5b9-d88e-4747-9268-26a000305ea7";
-      preLVM = true;
-      allowDiscards = true;
-    }
-  ];
-
-  networking.hostName = "edvorg-desktop-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
@@ -135,7 +126,6 @@
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
-  services.xserver.videoDrivers = [ "intel" "nvidia" ];
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
