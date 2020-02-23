@@ -63,7 +63,6 @@
     # basic system tools
     plasma-nm
     firefox-devedition-bin
-    chromium
     git
     ksshaskpass
     wget
@@ -82,19 +81,17 @@
     virtmanager-qt
     dmg2img
     libguestfs-with-appliance
-    amarok
     # multimedia
+    amarok
     vlc
     obs-studio
     gimp
     blender
-    unity3d
     audacity
     calibre
     sidequest
     transmission-gtk
     # goodnotes development
-    jetbrains.idea-community
     jq
     sops
     jdk
@@ -107,7 +104,6 @@
     patchelf
     # android development
     android-udev-rules
-    android-studio
   ];
   programs.adb.enable = true;
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
