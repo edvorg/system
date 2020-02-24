@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ./security.nix
       ./hardware-configuration.nix
       ./hardware-specific.nix
     ];
@@ -46,9 +47,6 @@
 
   # Set your time zone.
   time.timeZone = "Asia/Hong_Kong";
-
-  services.udev.packages = [ pkgs.yubikey-personalization ];
-  services.pcscd.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
