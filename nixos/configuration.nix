@@ -56,11 +56,9 @@
     plasma-nm
     firefox-devedition-bin
     git
-    ksshaskpass
     wget
     vim
     emacs
-    gnupg
     tmux
     kdeApplications.spectacle
     gparted
@@ -98,17 +96,12 @@
     android-udev-rules
   ];
   programs.adb.enable = true;
-  programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
   programs.java.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
