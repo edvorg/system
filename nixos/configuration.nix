@@ -42,6 +42,7 @@
     firefox-devedition-bin
     thunderbird-bin
     git
+    git-lfs
     wget
     vim
     emacs
