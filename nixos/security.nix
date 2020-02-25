@@ -12,5 +12,6 @@
     ksshaskpass
     pass
     srm
+    pinentry_qt5
   ];
 }
