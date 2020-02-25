@@ -11,5 +11,6 @@
     gnupg
     ksshaskpass
     pass
+    srm
   ];
 }
