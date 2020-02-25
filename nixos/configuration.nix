@@ -25,31 +25,16 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour.
-  # networking.useDHCP = false;
-  # networking.interfaces.wlp1s0.useDHCP = true;
   networking.networkmanager.enable = true;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 
-  # Set your time zone.
   time.timeZone = "Asia/Hong_Kong";
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # basic system tools
@@ -98,9 +83,6 @@
   programs.adb.enable = true;
   programs.java.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-
   # List services that you want to enable:
 
   # Open ports in the firewall.
@@ -128,7 +110,6 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edvorg = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "adbusers" ];
