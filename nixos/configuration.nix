@@ -40,6 +40,7 @@
     # basic system tools
     plasma-nm
     firefox-devedition-bin
+    thunderbird-bin
     git
     wget
     vim
