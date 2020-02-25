@@ -16,8 +16,10 @@
   environment.systemPackages = with pkgs; [
     gnupg
     ksshaskpass
-    pass
+    (pass.withExtensions (ext: with ext; [pass-import]))
     srm
     pinentry_qt5
+    yubikey-manager
+    yubikey-manager-qt
   ];
 }
