@@ -38,8 +38,11 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # basic system tools
+    gwenview
+    unzip
     plasma-nm
     firefox-devedition-bin
+    chromium
     thunderbird-bin
     git
     git-lfs
