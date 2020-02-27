@@ -3,6 +3,7 @@
 {
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
+  services.sshd.enable = false;
   programs.ssh.startAgent = false;
   programs.ssh.askPassword = "/run/current-system/sw/bin/ksshaskpass";
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
@@ -22,4 +23,10 @@
     yubikey-manager
     yubikey-manager-qt
   ];
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 }
