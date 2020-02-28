@@ -14,7 +14,6 @@
 
   services.xserver.videoDrivers = [ "intel" "nvidia" ];
 
-  environment.systemPackages = with pkgs; [
-    	acpi
-  ];
+  hardware.opengl.driSupport32Bit = true;
+  virtualisation.docker.enableNvidia = true;
 }
