@@ -53,6 +53,7 @@
     kdeApplications.spectacle
     gparted
     ntfs3g
+    usbutils
     # virtualization
     virtualbox
     docker-compose
