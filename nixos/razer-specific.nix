@@ -14,6 +14,7 @@
 
   networking.hostName = "edvorg-razer-nixos"; # Define your hostname.
 
-  environment.systemPackages = with pkgs; [
-  ];
+  services.xserver.videoDrivers = [ "intel" ];
+
+  hardware.opengl.driSupport32Bit = true;
 }
