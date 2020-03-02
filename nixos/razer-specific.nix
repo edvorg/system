@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  hardware.openrazer.enable = true;
+
   boot.initrd.luks.devices = [
     {
       name = "root";
@@ -13,6 +15,5 @@
   networking.hostName = "edvorg-razer-nixos"; # Define your hostname.
 
   environment.systemPackages = with pkgs; [
-    	acpi
   ];
 }

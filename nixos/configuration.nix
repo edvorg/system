@@ -111,7 +111,7 @@
 
   users.users.edvorg = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "adbusers" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "adbusers" "plugdev" ];
   };
 
   # This value determines the NixOS release with which your system is to be
