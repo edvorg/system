@@ -25,6 +25,7 @@
     pinentry_qt5
     yubikey-manager
     yubikey-manager-qt
+    mosh
   ];
 
   networking.firewall.allowedTCPPorts = [];
