@@ -94,6 +94,11 @@
   ];
   programs.adb.enable = true;
   programs.java.enable = true;
+  environment.shellAliases = {
+    ll = "lsd -l";
+    ls = "lsd";
+    cat = "bat";
+  };
 
   # List services that you want to enable:
 
