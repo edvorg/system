@@ -35,6 +35,10 @@
 
   time.timeZone = "Asia/Hong_Kong";
 
+  fonts.enableFontDir = true;
+  fonts.fontconfig.enable = true;
+  fonts.fonts = [ pkgs.nerdfonts ];
+
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # basic system tools
@@ -54,6 +58,8 @@
     gparted
     ntfs3g
     usbutils
+    lsd
+    bat
     # virtualization
     virtualbox
     docker-compose
