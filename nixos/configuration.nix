@@ -123,7 +123,17 @@
 
   users.users.edvorg = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "adbusers" "plugdev" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "libvirtd"
+      "adbusers"
+      "plugdev"
+      "audio"
+      "video"
+      "input"
+    ];
   };
 
   # This value determines the NixOS release with which your system is to be
@@ -131,5 +141,4 @@
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
-
 }
