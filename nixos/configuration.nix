@@ -42,6 +42,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # basic system tools
+    p7zip
     gwenview
     unzip
     plasma-nm
@@ -60,6 +61,11 @@
     usbutils
     lsd
     bat
+    traceroute
+    kdeApplications.ksystemlog
+    gwenview
+    ark
+    filelight
     # virtualization
     virtualbox
     docker-compose
@@ -78,17 +84,6 @@
     calibre
     sidequest
     transmission-gtk
-    # goodnotes development
-    jq
-    sops
-    jdk
-    yarn
-    leiningen
-    python38
-    gcc
-    libffi
-    glibc
-    patchelf
     # android development
     android-udev-rules
   ];
