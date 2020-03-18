@@ -20,6 +20,7 @@
   boot.loader.grub.device = "nodev";
   boot.loader.grub.useOSProber = true;
   boot.loader.grub.enableCryptodisk = true;
+  boot.loader.grub.configurationLimit = 2;
   boot.extraModprobeConfig = "options kvm_intel nested=1";
 
   virtualisation.libvirtd.enable = true;
@@ -66,6 +67,7 @@
     gwenview
     ark
     filelight
+    alacritty
     # virtualization
     virtualbox
     docker-compose
