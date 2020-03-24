@@ -68,7 +68,7 @@
     ark
     filelight
     alacritty
-    python3
+    python38
     zoom-us
     # virtualization
     virtualbox
