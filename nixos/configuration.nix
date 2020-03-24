@@ -68,6 +68,8 @@
     ark
     filelight
     alacritty
+    python3
+    zoom-us
     # virtualization
     virtualbox
     docker-compose
@@ -90,7 +92,7 @@
     android-udev-rules
   ];
   programs.adb.enable = true;
-  programs.java.enable = true;
+  programs.java.enable = false;
   environment.shellAliases = {
     ll = "lsd -l";
     ls = "lsd";
