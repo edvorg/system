@@ -25,6 +25,8 @@
 
   virtualisation.libvirtd.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
 
   networking.networkmanager.enable = true;
 
@@ -70,8 +72,10 @@
     alacritty
     python38
     zoom-us
+    inetutils
+    bind
     # virtualization
-    virtualbox
+    vagrant
     docker-compose
     docker
     qemu
@@ -120,6 +124,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
+  users.extraGroups.vboxusers.members = [ "edvorg" ];
   users.users.edvorg = {
     isNormalUser = true;
     extraGroups = [
