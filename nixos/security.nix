@@ -26,8 +26,13 @@
     yubikey-manager
     yubikey-manager-qt
     mosh
+    networkmanager-l2tp
   ];
 
   networking.firewall.allowedTCPPorts = [];
   networking.firewall.allowedUDPPorts = [];
+
+  environment.etc."ipsec.secrets".text = ''
+    include ipsec.d/ipsec.nm-l2tp.secrets
+  '';
 }
