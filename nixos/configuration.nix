@@ -74,6 +74,7 @@
     zoom-us
     inetutils
     bind
+    tdesktop
     # virtualization
     vagrant
     docker-compose
