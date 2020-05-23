@@ -10,6 +10,7 @@
       ./security.nix
       ./hardware-configuration.nix
       ./hardware-specific.nix
+      ./kde.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -56,7 +57,6 @@
     p7zip
     gwenview
     unzip
-    plasma-nm
     firefox-devedition-bin
     chromium
     thunderbird-bin
@@ -66,14 +66,12 @@
     vim
     emacs
     tmux
-    kdeApplications.spectacle
     gparted
     ntfs3g
     usbutils
     lsd
     bat
     traceroute
-    kdeApplications.ksystemlog
     gwenview
     ark
     filelight
@@ -134,10 +132,6 @@
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
 
   users.extraGroups.vboxusers.members = [ "edvorg" ];
   users.users.edvorg = {
