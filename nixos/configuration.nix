@@ -48,6 +48,9 @@
     "openssl-1.0.2u"
   ];
 
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   environment.systemPackages = with pkgs; [
     # basic system tools
     p7zip
