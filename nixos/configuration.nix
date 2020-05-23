@@ -80,6 +80,7 @@
     inetutils
     bind
     tdesktop
+    steam
     # virtualization
     vagrant
     docker-compose
@@ -116,7 +117,12 @@
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    support32Bit = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
