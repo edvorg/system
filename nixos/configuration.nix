@@ -82,6 +82,7 @@
     bind
     tdesktop
     steam
+    protontricks
     # virtualization
     vagrant
     docker-compose
