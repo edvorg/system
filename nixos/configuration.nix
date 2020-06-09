@@ -100,7 +100,6 @@
     gimp
     blender
     audacity
-    calibre
     sidequest
     transmission-gtk
     # android development
