@@ -84,6 +84,7 @@
     tdesktop
     steam
     protontricks
+    prusa-slicer
     # virtualization
     vagrant
     docker-compose
