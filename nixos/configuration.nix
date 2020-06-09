@@ -65,6 +65,7 @@
     wget
     vim
     emacs
+    vscode-with-extensions
     tmux
     gparted
     ntfs3g
