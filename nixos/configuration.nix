@@ -106,6 +106,9 @@
     android-udev-rules
     # office
     libreoffice-fresh
+    # games
+    openraPackages.engines.release
+    openraPackages.engines.playtest
   ];
   programs.adb.enable = true;
   programs.java.enable = false;
