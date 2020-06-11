@@ -104,6 +104,8 @@
     transmission-gtk
     # android development
     android-udev-rules
+    # office
+    libreoffice-fresh
   ];
   programs.adb.enable = true;
   programs.java.enable = false;
