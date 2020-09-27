@@ -9,4 +9,5 @@ sudo cp -fv ~/Projects/system/nixos/${1}-specific.nix /etc/nixos/hardware-specif
 sudo cp -fv ~/Projects/system/nixos/configuration.nix /etc/nixos/configuration.nix
 sudo cp -fv ~/Projects/system/nixos/security.nix /etc/nixos/security.nix
 sudo cp -fv ~/Projects/system/nixos/kde.nix /etc/nixos/kde.nix
+sudo cp -fv ~/Projects/system/nixos/gnome.nix /etc/nixos/gnome.nix
 echo done
