@@ -12,8 +12,7 @@
 
   networking.hostName = "edvorg-desktop-nixos"; # Define your hostname.
 
-  services.xserver.videoDrivers = [ "intel" "nvidia" ];
+  services.xserver.videoDrivers = [  ];
 
   hardware.opengl.driSupport32Bit = true;
-  virtualisation.docker.enableNvidia = true;
 }
