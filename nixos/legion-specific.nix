@@ -10,7 +10,7 @@
     };
   };
 
-  networking.hostName = "edvorg-xps"; # Define your hostname.
+  networking.hostName = "edvorg-legion-linux"; # Define your hostname.
 
   services.xserver.videoDrivers = [ "intel" ];
 
