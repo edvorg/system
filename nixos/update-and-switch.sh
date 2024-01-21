@@ -8,8 +8,6 @@ if [ ! -f "hardware-specific/${1}.nix" ] ; then echo target does not exist ; exi
 echo updating
 sudo cp -fv ~/Projects/system/nixos/hardware-specific/${1}.nix /etc/nixos/hardware-specific.nix
 sudo cp -fv ~/Projects/system/nixos/configuration.nix /etc/nixos/configuration.nix
-sudo cp -fv ~/Projects/system/nixos/security.nix /etc/nixos/security.nix
-sudo cp -fv ~/Projects/system/nixos/kde.nix /etc/nixos/kde.nix
 echo done
 
 echo switching
