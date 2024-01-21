@@ -7,154 +7,211 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./security.nix
       ./hardware-configuration.nix
-      ./hardware-specific.nix
-      ./kde.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.efiSupport = true;
-  boot.loader.grub.device = "nodev";
-  boot.loader.grub.useOSProber = true;
-  boot.loader.grub.enableCryptodisk = true;
-  boot.loader.grub.configurationLimit = 2;
-  boot.extraModprobeConfig = "options kvm_intel nested=1";
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
   networking.networkmanager.enable = true;
 
-  console.keyMap = "us";
-  console.font = "Lat2-Terminus16";
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-  };
+  # Set your time zone.
+  time.timeZone = "Asia/Bangkok";
 
-  time.timeZone = "Asia/Hong_Kong";
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-  fonts.enableFontDir = true;
-  fonts.fontconfig.enable = true;
-  fonts.fonts = [ pkgs.nerdfonts ];
-
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.0.2u"
-  ];
-
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    # basic system tools
-    p7zip
-    gwenview
-    unzip
-    firefox-devedition-bin
-    chromium
-    thunderbird-bin
-    git
-    git-lfs
-    wget
-    vim
-    emacs
-    vscode-with-extensions
-    tmux
-    gparted
-    ntfs3g
-    usbutils
-    lsd
-    bat
-    traceroute
-    gwenview
-    ark
-    filelight
-    alacritty
-    python38
-    zoom-us
-    inetutils
-    bind
-    tdesktop
-    steam
-    protontricks
-    prusa-slicer
-    # virtualization
-    vagrant
-    docker-compose
-    docker
-    qemu
-    virtmanager-qt
-    dmg2img
-    libguestfs-with-appliance
-    # multimedia
-    amarok
-    vlc
-    obs-studio
-    gimp
-    blender
-    audacity
-    sidequest
-    transmission-gtk
-    # android development
-    android-udev-rules
-    # office
-    libreoffice-fresh
-    # games
-    openraPackages.engines.release
-    openraPackages.engines.playtest
-  ];
-  programs.adb.enable = true;
-  programs.java.enable = false;
-  environment.shellAliases = {
-    ll = "lsd -l";
-    ls = "lsd";
-    cat = "bat";
-  };
-
-  # List services that you want to enable:
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-
-  hardware.pulseaudio = {
-    enable = true;
-    support32Bit = true;
-    package = pkgs.pulseaudioFull;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
 
-  # Enable touchpad support.
-  services.xserver.libinput.enable = true;
+  # Enable the KDE Plasma Desktop Environment.
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
 
-  users.extraGroups.vboxusers.members = [ "edvorg" ];
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
+  # graphics
+
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    powerManagement.enable = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    # Currently alpha-quality/buggy, so false is currently the recommended setting.
+    open = false;
+
+    # Enable the Nvidia settings menu,
+	# accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  virtualisation.docker.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edvorg = {
     isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "docker"
-      "libvirtd"
-      "adbusers"
-      "plugdev"
-      "audio"
-      "video"
-      "input"
+    description = "Eduard Knyshov";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [
+      firefox
     ];
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Enable nix ld
+  programs.nix-ld.enable = true;
+
+  # Sets up all the libraries to load
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    zlib
+    nss
+    openssl
+    curl
+    expat
+    # ...
+  ];
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+    _1password
+    _1password-gui
+    telegram-desktop
+    pkgs.discord
+    openjdk17
+    git
+    clang
+    llvmPackages_17.bintools
+    rustup
+    jetbrains.idea-ultimate
+    file
+    tidal-hifi
+    docker-compose
+    bat
+    lsd
+    vscode
+    yazi
+    alacritty
+    inetutils
+  ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = false; # Open ports in the firewall for Source Dedicated Server
+  };
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    # Certain features, including CLI integration and system authentication support,
+    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+    polkitPolicyOwners = [ "edvorg" ];
+  };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -162,5 +219,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.03"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
+
 }
