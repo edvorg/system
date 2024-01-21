@@ -10,7 +10,7 @@
       ./security.nix
       ./hardware-configuration.nix
       ./hardware-specific.nix
-      ./gnome.nix
+      ./kde.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
