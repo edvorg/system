@@ -14,7 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -78,13 +77,11 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  virtualisation.docker.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edvorg = {
     isNormalUser = true;
     description = "Eduard Knyshov";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "audio" "video" "input" ];
     packages = with pkgs; [
       firefox
     ];
@@ -124,7 +121,13 @@
     telegram-desktop
     pkgs.discord
     openjdk17
+    p7zip
+    unzip
     git
+    git-lfs
+    wget
+    vscode-with-extensions
+    tmux
     clang
     llvmPackages_17.bintools
     rustup
@@ -132,12 +135,16 @@
     file
     tidal-hifi
     docker-compose
-    bat
     lsd
-    vscode
+    bat
     yazi
     alacritty
     inetutils
+    vlc
+    gimp
+    blender
+    audacity
+    transmission-gtk
   ];
 
   programs.steam = {
@@ -153,6 +160,14 @@
     # require enabling PolKit integration on some desktop environments (e.g. Plasma).
     polkitPolicyOwners = [ "edvorg" ];
   };
+
+  environment.shellAliases = {
+    ll = "lsd -l";
+    ls = "lsd";
+    cat = "bat";
+  };
+
+  virtualisation.docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
