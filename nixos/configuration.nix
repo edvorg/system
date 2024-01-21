@@ -75,7 +75,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.edvorg = {
@@ -119,15 +119,18 @@
     _1password
     _1password-gui
     telegram-desktop
-    pkgs.discord
+    discord
     openjdk17
     p7zip
     unzip
+    thunderbird-bin
     git
     git-lfs
     wget
     vscode-with-extensions
     tmux
+    gparted
+    ntfs3g
     clang
     llvmPackages_17.bintools
     rustup
@@ -138,8 +141,10 @@
     lsd
     bat
     yazi
+    filelight
     alacritty
     inetutils
+    prusa-slicer
     vlc
     gimp
     blender
