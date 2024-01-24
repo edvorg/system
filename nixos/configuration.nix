@@ -155,6 +155,7 @@
     blender
     audacity
     transmission-gtk
+    libreoffice-qt
   ];
 
   programs.steam = {
