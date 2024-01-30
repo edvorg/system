@@ -128,7 +128,6 @@
     openjdk17
     p7zip
     unzip
-    thunderbird-bin
     git
     git-lfs
     wget
